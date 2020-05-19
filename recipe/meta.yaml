@@ -1,13 +1,13 @@
 {% set name = "cwinpy" %}
-{% set version = "0.2.1" %}
+{% set version = "0.3.0" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 3caedf3aac6b8ef9bc0df8467e1610587c1fae3b2a0266ee6c839d45a79e5cb0
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: f78df4926f76b50f6c1b27985a57844a6139e86a34f8dbd7fdf6564e6d6c16c1
 
 build:
   entry_points:
@@ -16,7 +16,7 @@ build:
     - cwinpy_knope_generate_pp_plots = cwinpy.knope.testing:generate_pp_plots
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
 
 requirements:
   host:
@@ -47,13 +47,13 @@ test:
     - cwinpy_knope_generate_pp_plots --help
 
 about:
-  home: "https://github.com/cwinpy/cwinpy/"
-  license: "MIT"
-  license_family: "MIT"
-  license_file: "LICENSE"
-  summary: "CW Inference in Python"
-  doc_url: "https://cwinpy.readthedocs.io/en/latest/"
-  dev_url: "https://github.com/cwinpy/cwinpy/"
+  home: https://github.com/cwinpy/cwinpy/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: CW Inference in Python
+  doc_url: https://cwinpy.readthedocs.io/en/latest/
+  dev_url: https://github.com/cwinpy/cwinpy/
   description: |
     A Python module for performing Bayesian inference for continuous gravitational-wave signals from pulsars.
 

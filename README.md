@@ -5,9 +5,13 @@ Home: https://github.com/cwinpy/cwinpy/
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cwinpy-feedstock/blob/master/LICENSE.txt)
 
 Summary: CW Inference in Python
+
+Development: https://github.com/cwinpy/cwinpy/
+
+Documentation: https://cwinpy.readthedocs.io/en/latest/
 
 A Python module for performing Bayesian inference for continuous gravitational-wave signals from pulsars.
 

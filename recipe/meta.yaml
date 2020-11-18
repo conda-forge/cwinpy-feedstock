@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.4.1" %}
+{% set version = "0.4.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3b76a3dab3313ac06649ea91eef844f6ba9c2fd129288186a1f2b8c2bec0f1cf
+  sha256: b766a79675b6b8607fa4c1023de97f26693dc32764f9965f36c028f70f057193
 
 build:
   entry_points:

@@ -19,9 +19,9 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_dag = cwinpy.pe.pe:pe_dag_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  number: 1
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -35,7 +35,6 @@ requirements:
     - configargparse
     - gwosc
     - gwpy
-    - lalframe
     - lintegrate
     - matplotlib-base
     - numba
@@ -43,30 +42,38 @@ requirements:
     - pycondor
     - python >=3.6
     - python-lal >=7.0.0
+    - python-lalframe >=1.5.1
     - python-lalpulsar >=2.0.0
     - scipy
 
 test:
-  imports:
-    - cwinpy
   requires:
+    - lalapps
     - pip
+    - pytest
+    - pytest-socket
+  source_files:
+    - test/
   commands:
+    # check requirements
+    - python -m pip check
+    # run unit tests
+    - python -m pytest test/ -ra -v
+    # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_dag --help
     - cwinpy_pe_generate_pp_plots --help
-    - python -m pip check
 
 about:
   home: https://github.com/cwinpy/cwinpy/
+  doc_url: https://cwinpy.readthedocs.io/
+  dev_url: https://github.com/cwinpy/cwinpy.git
   license: MIT
-  license_family: MIT
   license_file: LICENSE
   summary: CW Inference in Python
-  doc_url: https://cwinpy.readthedocs.io/en/latest/
-  dev_url: https://github.com/cwinpy/cwinpy/
   description: |
-    A Python module for performing Bayesian inference for continuous gravitational-wave signals from pulsars.
+    A Python module for performing Bayesian inference for
+    continuous gravitational-wave signals from pulsars.
 
 extra:
   recipe-maintainers:

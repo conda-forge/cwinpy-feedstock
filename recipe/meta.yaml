@@ -42,17 +42,20 @@ requirements:
     - numpy >=1.15
     - pycondor
     - python >=3.6
-    - python-lal
-    - python-lalpulsar
+    - python-lal >=7.0.0
+    - python-lalpulsar >=2.0.0
     - scipy
 
 test:
   imports:
     - cwinpy
+  requires:
+    - pip
   commands:
     - cwinpy_pe --help
     - cwinpy_pe_dag --help
     - cwinpy_pe_generate_pp_plots --help
+    - python -m pip check
 
 about:
   home: https://github.com/cwinpy/cwinpy/

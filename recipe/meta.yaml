@@ -8,13 +8,16 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 23e4947f2e405578b772a980ad232bec95e4c503f03579508a7b09b3637cdd0e
+  patches:
+    # we handle lalsuite packages individually
+    - requirements-no-lalsuite.patch
 
 build:
   entry_points:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_dag = cwinpy.pe.pe:pe_dag_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
 

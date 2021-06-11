@@ -9,6 +9,8 @@ source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 23e4947f2e405578b772a980ad232bec95e4c503f03579508a7b09b3637cdd0e
   patches:
+    # unpin numpy
+    - requirements-unpin-numpy.patch
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
 

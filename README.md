@@ -9,11 +9,12 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cwinpy-feedstoc
 
 Summary: CW Inference in Python
 
-Development: https://github.com/cwinpy/cwinpy/
+Development: https://github.com/cwinpy/cwinpy.git
 
-Documentation: https://cwinpy.readthedocs.io/en/latest/
+Documentation: https://cwinpy.readthedocs.io/
 
-A Python module for performing Bayesian inference for continuous gravitational-wave signals from pulsars.
+A Python module for performing Bayesian inference for
+continuous gravitational-wave signals from pulsars.
 
 
 Current build status
@@ -43,6 +44,7 @@ Installing `cwinpy` from the `conda-forge` channel can be achieved by adding `co
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `cwinpy` can be installed with:

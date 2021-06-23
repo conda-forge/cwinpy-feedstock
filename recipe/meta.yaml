@@ -25,9 +25,11 @@ build:
 
 requirements:
   host:
+    - cython
     - pip
     - python >=3.6
     - setuptools
+    - setuptools_scm
   run:
     - astropy
     - bilby >=0.5.8

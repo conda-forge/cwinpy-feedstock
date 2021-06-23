@@ -24,6 +24,7 @@ build:
 requirements:
   host:
     - cython
+    - numpy >=1.15
     - pip
     - python >=3.6
     - setuptools

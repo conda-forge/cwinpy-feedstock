@@ -42,6 +42,7 @@ requirements:
     - matplotlib-base
     - numba
     - {{ pin_compatible('numpy') }}
+    - psrqpy
     - pycondor
     - python >=3.6
     - python-lal >=7.1.2

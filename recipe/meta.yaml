@@ -22,6 +22,8 @@ build:
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
+  build:
+    - {{ compiler('c') }}
   host:
     - cython
     - numpy >=1.15
@@ -39,7 +41,7 @@ requirements:
     - lintegrate
     - matplotlib-base
     - numba
-    - numpy >=1.15
+    - {{ pin_compatible('numpy') }}
     - pycondor
     - python >=3.6
     - python-lal >=7.1.2

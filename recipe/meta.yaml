@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 23e4947f2e405578b772a980ad232bec95e4c503f03579508a7b09b3637cdd0e
+  sha256: b37ade22c6dbfdb66a1cc523edd24546e3cc1a598824922e34073bc314e85976
   patches:
     # unpin numpy
     - requirements-unpin-numpy.patch
@@ -20,7 +20,7 @@ build:
     - cwinpy_pe_dag = cwinpy.pe.pe:pe_dag_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
   noarch: python
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:

@@ -17,18 +17,19 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_dag = cwinpy.pe.pe:pe_dag_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
+  # requirements aren't available for Windows
+  skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
   host:
     - cython
-    - numpy >=1.15
+    - numpy
     - pip
-    - python >=3.6
+    - python
     - setuptools
     - setuptools_scm
   run:
@@ -44,7 +45,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - psrqpy
     - pycondor
-    - python >=3.6
+    - python
     - python-lal >=7.1.2
     - python-lalframe >=1.5.4
     - python-lalpulsar >=3.0.1

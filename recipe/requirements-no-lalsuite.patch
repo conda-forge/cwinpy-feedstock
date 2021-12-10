@@ -1,12 +1,12 @@
 diff --git a/setup.cfg b/setup.cfg
-index d6f8f00..a84245c 100644
+index 5e242ef..2904167 100644
 --- a/setup.cfg
 +++ b/setup.cfg
-@@ -36,7 +36,6 @@ install_requires =
-	bilby_pipe >= 1.0.2
-	gwosc >= 0.5.4
-	gwpy >= 2.0.0
--	lalsuite >= 6.82
-	lintegrate >= 0.1.7
-	matplotlib
-	numba
+@@ -36,6 +36,7 @@ install_requires =
+     corner >= 2.2.1
+     gwosc >= 0.5.4
+     gwpy >= 2.1.1
++    lalsuite >= 7.0.1.dev20210917
+     lintegrate >= 0.1.7
+     matplotlib
+     numba

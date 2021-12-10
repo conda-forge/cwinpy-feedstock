@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.6.0" %}
+{% set version = "0.7.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b37ade22c6dbfdb66a1cc523edd24546e3cc1a598824922e34073bc314e85976
+  sha256: bdc0cbdc5d96329fb0424ec462d10a2f7b0a002d7b6de10e65fd955d53335d5f
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
@@ -19,7 +19,7 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_dag = cwinpy.pe.pe:pe_dag_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]

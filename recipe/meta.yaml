@@ -39,6 +39,7 @@ requirements:
     - bilby >=0.5.8
     - bilby_pipe >=0.2.0
     - configargparse
+    - ephem
     - gwosc
     - gwpy
     - libstempo >=2.4.2

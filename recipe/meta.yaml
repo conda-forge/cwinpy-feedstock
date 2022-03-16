@@ -13,6 +13,8 @@ source:
     - requirements-no-lalsuite.patch
     # exclude test directory as a package
     - packages.patch
+    # remove march=native
+    - march.patch
 
 build:
   entry_points:

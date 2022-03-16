@@ -38,8 +38,8 @@ requirements:
     - setuptools_scm
   run:
     - astropy
-    - bilby >=0.5.8
-    - bilby_pipe >=0.2.0
+    - bilby >=1.0.0
+    - bilby_pipe >=1.0.0
     - configargparse
     - ephem
     - gwosc

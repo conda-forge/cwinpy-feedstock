@@ -57,10 +57,7 @@ requirements:
     - python-lalpulsar >=3.0.1
     - scipy
     - tempo2 <2022.01.1
-    - typing-extensions <4  # [py==37]
-    - typing-extensions  # [py==38]
-    - typing-extensions  # [py==39]
-    - typing-extensions  # [py==310]
+    - typing-extensions <4
 
 test:
   requires:

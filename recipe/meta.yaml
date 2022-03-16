@@ -56,6 +56,7 @@ requirements:
     - python-lalframe >=1.5.4
     - python-lalpulsar >=3.0.1
     - scipy
+    - tempo2 <2022.01.1
 
 test:
   requires:

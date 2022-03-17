@@ -1,0 +1,135 @@
+diff --git a/cwinpy/heterodyne/base.py b/cwinpy/heterodyne/base.py
+index 5c1893e..85de3b0 100644
+--- a/cwinpy/heterodyne/base.py
++++ b/cwinpy/heterodyne/base.py
+@@ -2456,7 +2456,8 @@ class Heterodyne(object):
+ 
+             for timetype in timeephemeris:
+                 self._timecorr[timetype] = initialise_ephemeris(
+-                    timefile=timeephemeris[timetype], timeonly=True
++                    timefile=timeephemeris[timetype],
++                    timeonly=True,
+                 )
+ 
+     @property
+@@ -2895,9 +2896,7 @@ def generate_segments(
+ 
+     if isinstance(segmentfile, str):
+         try:
+-            segmentsarray = np.atleast_2d(
+-                np.loadtxt(segmentfile, comments=["#", "%"], dtype=float)
+-            )
++            segmentsarray = np.loadtxt(segmentfile, comments=["#", "%"], dtype=float)
+             segments = []
+             for segment in segmentsarray:
+                 if segment[1] < starttime or segment[0] > endtime:
+diff --git a/cwinpy/heterodyne/heterodyne.py b/cwinpy/heterodyne/heterodyne.py
+index 3502971..97f09a8 100644
+--- a/cwinpy/heterodyne/heterodyne.py
++++ b/cwinpy/heterodyne/heterodyne.py
+@@ -205,8 +205,11 @@ expected evolution of the gravitational-wave signal from a set of pulsars."""
+     segmentparser.add(
+         "--segmentlist",
+         help=(
+-            "Provide an ASCII text file containing a list of science segment "
+-            "start and end times in two columns."
++            "Provide a list of data segment start and end times, as "
++            "list/tuple pairs in the list, or an ASCII text file containing "
++            "the segment start and end times in two columns. If a list, this "
++            "should be in the form of a Python list, surrounded by quotation "
++            'marks, e.g., "[(900000000,900086400),(900100000,900186400)]".'
+         ),
+     )
+     segmentparser.add(
+@@ -499,23 +502,25 @@ def heterodyne(**kwargs):
+         "timeephemeris",
+     ]
+     for attr in nsattrs:
+-        value = str(hetkwargs.pop(attr, None))
++        value = hetkwargs.pop(attr, None)
+ 
+-        # check whether the value can be evaluated as a Python object
+-        try:
+-            value = ast.literal_eval(value)
+-        except (ValueError, SyntaxError):
+-            pass
+-
+-        # if the value was a string within a string, e.g., '"[2.3]"',
+-        # evaluate again just in case it contains a Python object!
+         if isinstance(value, str):
++            # check whether the value can be evaluated as a Python object
+             try:
+                 value = ast.literal_eval(value)
+             except (ValueError, SyntaxError):
+                 pass
+ 
+-        if value is not None:
++            # if the value was a string within a string, e.g., '"[2.3]"',
++            # evaluate again just in case it contains a Python object!
++            if isinstance(value, str):
++                try:
++                    value = ast.literal_eval(value)
++                except (ValueError, SyntaxError):
++                    pass
++
++            hetkwargs[attr] = value
++        elif value is not None:
+             hetkwargs[attr] = value
+ 
+     # check if pulsarfiles is a single entry list containing a dictionary
+diff --git a/test/test_knope.py b/test/test_knope.py
+index 9b1c6cb..6672a20 100644
+--- a/test/test_knope.py
++++ b/test/test_knope.py
+@@ -213,7 +213,7 @@ phi0 = {phi0}
+             "pulsarfiles = {}\n"
+             "framecache = {}\n"
+             "channel = {}\n"
+-            "segmentlist = {}\n"
++            'segmentlist = "{}"\n'
+             "output = {}\n"
+             "stride = {}\n"
+             "freqfactor = {}\n"
+@@ -222,12 +222,6 @@ phi0 = {phi0}
+             "label = heterodyne_config_{{psr}}_{{det}}_{{freqfactor}}.hdf5\n"
+         )
+ 
+-        # create segment list file
+-        seglistfile = "segments.txt"
+-        with open(seglistfile, "w") as fp:
+-            for segment in segments:
+-                fp.write(f"{segment[0]} {segment[1]}\n")
+-
+         hetconfigfile = "hetconfig.ini"
+         with open(hetconfigfile, "w") as fp:
+             fp.write(
+@@ -238,7 +232,7 @@ phi0 = {phi0}
+                     hetkwargs["pulsarfiles"][0],
+                     hetkwargs["framecache"],
+                     hetkwargs["channel"],
+-                    seglistfile,
++                    hetkwargs["segmentlist"],
+                     hetkwargs["output"],
+                     hetkwargs["stride"],
+                     hetkwargs["freqfactor"],
+@@ -258,7 +252,12 @@ phi0 = {phi0}
+         peconfigfile = "peconfig.ini"
+         pekwargs["grid_kwargs"]["label"] = "pe_config"
+         with open(peconfigfile, "w") as fp:
+-            fp.write(peconfigstr.format(pekwargs["grid"], pekwargs["grid_kwargs"]))
++            fp.write(
++                peconfigstr.format(
++                    pekwargs["grid"],
++                    pekwargs["grid_kwargs"],
++                )
++            )
+ 
+         # run knope
+         hetcon, peruncon = knope(
+@@ -291,6 +290,5 @@ phi0 = {phi0}
+         )
+ 
+         os.remove("knope_test.prior")
+-        os.remove(seglistfile)
+         os.remove(hetconfigfile)
+         os.remove(peconfigfile)

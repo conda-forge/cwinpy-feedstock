@@ -11,8 +11,6 @@ source:
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
-    # exclude test directory as a package
-    - packages.patch
 
 build:
   entry_points:
@@ -63,13 +61,11 @@ test:
     - pip
     - pytest
     - pytest-socket
-  source_files:
-    - test/
   commands:
     # check requirements
     - python -m pip check
     # run unit tests
-    - python -m pytest test/ -ra -v
+    - python -m pytest -ra -v
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

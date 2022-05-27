@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.6.0" %}
+{% set version = "0.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b37ade22c6dbfdb66a1cc523edd24546e3cc1a598824922e34073bc314e85976
+  sha256: 1eae6de507023b037f63ef75ca2fe83c3324de435fe744052446ca5942e6d898
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
@@ -17,9 +17,9 @@ source:
 build:
   entry_points:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
-    - cwinpy_pe_dag = cwinpy.pe.pe:pe_dag_cli
+    - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]
@@ -35,22 +35,26 @@ requirements:
     - setuptools
     - setuptools_scm
   run:
+    - appdirs
     - astropy
-    - bilby >=0.5.8
-    - bilby_pipe >=0.2.0
+    - bilby >=1.1.4
     - configargparse
-    - gwosc
-    - gwpy
-    - lintegrate
+    - corner >=2.2.1
+    - gwosc >=0.5.4
+    - gwpy >=2.2.1
+    - htcondor >=9.0.6
+    - lintegrate >=0.1.7
     - matplotlib-base
-    - numba
+    - numba >=0.5.0
     - {{ pin_compatible('numpy') }}
-    - psrqpy
+    - pesummary >=0.13.0
+    - psrqpy >=1.2.2
     - pycondor
     - python
-    - python-lal >=7.1.2
-    - python-lalframe >=1.5.4
-    - python-lalpulsar >=3.0.1
+    - python-lal >=7.1.7
+    - python-lalframe >=2.0.0
+    - python-lalpulsar >=4.0.0
+    - requests
     - scipy
 
 test:
@@ -68,13 +72,13 @@ test:
     - python -m pytest test/ -ra -v
     # check entry points
     - cwinpy_pe --help
-    - cwinpy_pe_dag --help
+    - cwinpy_pe_pipeline --help
     - cwinpy_pe_generate_pp_plots --help
 
 about:
   home: https://github.com/cwinpy/cwinpy/
   doc_url: https://cwinpy.readthedocs.io/
-  dev_url: https://github.com/cwinpy/cwinpy.git
+  dev_url: https://git.ligo.org/cwinpy/cwinpy
   license: MIT
   license_file: LICENSE
   summary: CW Inference in Python

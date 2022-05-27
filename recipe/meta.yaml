@@ -57,15 +57,19 @@ requirements:
 
 test:
   requires:
+    - cweqgen
+    - healpy
+    - libstempo >=2.4.2
     - lalapps
     - pip
-    - pytest
+    - pytest >=4.6
     - pytest-socket
+    - seaborn
   commands:
     # check requirements
     - python -m pip check
     # run unit tests
-    - python -m pytest -ra -v
+    - python -m pytest --pyargs cwinpy
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

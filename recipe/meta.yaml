@@ -11,6 +11,7 @@ source:
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
+    - remove_pycondor.patch
 
 build:
   entry_points:

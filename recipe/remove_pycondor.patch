@@ -2,7 +2,7 @@ diff --git a/setup.cfg b/setup.cfg
 index 3d8761f..d8e073c 100644
 --- a/setup.cfg
 +++ b/setup.cfg
-@@ -45,7 +45,6 @@ install_requires =
+@@ -44,7 +44,6 @@ install_requires =
      numpy >= 1.17.0
      pesummary >= 0.13.0
      psrqpy >= 1.1.7

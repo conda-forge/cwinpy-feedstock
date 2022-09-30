@@ -63,7 +63,7 @@ test:
   requires:
     - cweqgen >=0.4.4
     - healpy
-    - libstempo >=2.4.5
+    - libstempo >=2.4.5  # [not arm64]
     - lalapps
     - pip
     - pytest >=4.6
@@ -71,9 +71,9 @@ test:
     - seaborn
   commands:
     # check requirements
-    - python -m pip check
+    - python -m pip check  # [not arm64]
     # run unit tests
-    - python -m pytest --pyargs cwinpy
+    - python -m pytest --pyargs cwinpy  # [not arm64]
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

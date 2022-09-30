@@ -33,7 +33,7 @@ requirements:
     - cython
     - numpy
     - pip
-    - python >=3.8
+    - python
     - setuptools
     - setuptools_scm
   run:
@@ -50,7 +50,7 @@ requirements:
     - matplotlib-base
     - numba >=0.5.0
     - {{ pin_compatible('numpy') }}
-    - pesummary >=0.13.9
+    - pesummary >=0.13.0
     - psrqpy >=1.2.2
     - python >=3.7
     - python-lal >=7.2.2

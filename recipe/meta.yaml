@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 1eae6de507023b037f63ef75ca2fe83c3324de435fe744052446ca5942e6d898
+  sha256: 9e0ab18cdc0bc757d43edf1e229154f6b44d1c33360c20ac77085a157fa75b8d
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
@@ -17,7 +17,7 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]
@@ -39,28 +39,29 @@ requirements:
   run:
     - appdirs
     - astropy
-    - bilby >=1.1.4
+    - bilby >=1.2.0
     - configargparse
     - corner >=2.2.1
     - gwosc >=0.5.4
     - gwpy >=2.1.1
+    - healpy
     - htcondor >=9.0.6
     - lintegrate >=0.1.7
     - matplotlib-base
     - numba >=0.5.0
     - {{ pin_compatible('numpy') }}
-    - pesummary >=0.13.0
+    - pesummary >=0.13.9
     - psrqpy >=1.2.2
     - python
-    - python-lal >=7.1.7
-    - python-lalframe >=2.0.0
-    - python-lalpulsar >=4.0.0
+    - python-lal >=7.2.2
+    - python-lalframe >=2.0.3
+    - python-lalpulsar >=5.0.2
     - requests
     - scipy
 
 test:
   requires:
-    - cweqgen
+    - cweqgen >=0.4.4
     - healpy
     - libstempo >=2.4.2
     - lalapps

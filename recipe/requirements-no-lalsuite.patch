@@ -1,16 +1,8 @@
 diff --git a/setup.cfg b/setup.cfg
-index 1a3ec76..887cc3d 100644
+index 1a3ec76..f511e31 100644
 --- a/setup.cfg
 +++ b/setup.cfg
-@@ -32,14 +32,13 @@ setup_requires =
- install_requires =
- 	appdirs
- 	astropy
--	bilby >= 1.2.0
-+	bilby
- 	configargparse
- 	corner >= 2.2.1
- 	gwosc >= 0.5.4
+@@ -39,7 +39,6 @@ install_requires =
  	gwpy >= 2.1.1
  	healpy
  	htcondor >= 9.0.6

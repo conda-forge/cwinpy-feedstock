@@ -1,12 +1,12 @@
-diff --git a/setup.cfg b/setup.cfg
-index 1a3ec76..f511e31 100644
---- a/setup.cfg
-+++ b/setup.cfg
-@@ -39,7 +39,6 @@ install_requires =
- 	gwpy >= 2.1.1
- 	healpy
- 	htcondor >= 9.0.6
--	lalsuite >= 7.8
- 	lintegrate >= 0.1.7
- 	matplotlib
- 	numba >= 0.5.0
+diff --git a/pyproject.toml b/pyproject.toml
+index 6f36c9d..0792ad9 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -47,7 +47,6 @@ dependencies = [
+     "gwpy >= 2.1.1",
+     "healpy",
+     "htcondor >= 9.0.6",
+-    "lalsuite >= 7.8",
+     "lintegrate >= 0.1.7",
+     "matplotlib",
+     "numba >= 0.5.0",

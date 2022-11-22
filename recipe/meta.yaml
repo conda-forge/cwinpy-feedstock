@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.9.0" %}
+{% set version = "0.9.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,17 +7,19 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9e0ab18cdc0bc757d43edf1e229154f6b44d1c33360c20ac77085a157fa75b8d
+  sha256: 414564e980e7568daa2da7d09bf6c34e1011c356257cbe260be550c4addc15d1
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
+    # one test fails if no iternet connection is possible, so patch
+    - nointernet.patch
 
 build:
   entry_points:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]
@@ -39,7 +41,7 @@ requirements:
   run:
     - appdirs
     - astropy
-    - bilby >=1.2.0
+    - bilby >=1.2.1
     - configargparse
     - corner >=2.2.1
     - gwosc >=0.5.4

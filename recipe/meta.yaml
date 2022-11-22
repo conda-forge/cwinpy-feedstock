@@ -11,6 +11,8 @@ source:
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
+    # one test fails if no iternet connection is possible, so patch
+    - nointernet.patch
 
 build:
   entry_points:

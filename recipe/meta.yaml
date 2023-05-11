@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.9.3" %}
+{% set version = "0.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0a771618bbc96488d3be4983c0a385442173183aacf15dd4a677ee94ad3fe512
+  sha256: 281e5ef780e89cc2371e7cc2211ccc8ad798eb8395e27c89423bc38a5c66c29e
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
@@ -48,10 +48,10 @@ requirements:
     - gwpy >=2.1.1
     - healpy
     - lintegrate >=0.1.7
-    - matplotlib-base >=3.1,!=3.6.1,<=3.6.3
+    - matplotlib-base >=3.1,!=3.6.1
     - numba >=0.5.0
     - {{ pin_compatible('numpy') }}
-    - pesummary >=0.13.0
+    - pesummary >=1.0.0
     - psrqpy >=1.2.2
     - python
     - python-htcondor >=9.0.6
@@ -60,6 +60,7 @@ requirements:
     - python-lalpulsar >=5.0.2
     - requests
     - scipy
+    - simpleeval
 
 test:
   requires:

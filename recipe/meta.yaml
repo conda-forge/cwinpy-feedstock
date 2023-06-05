@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "0.10.0" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 281e5ef780e89cc2371e7cc2211ccc8ad798eb8395e27c89423bc38a5c66c29e
+  sha256: 7caab11119f88c80d136ec99c898943ec8ced209bb9a63bfa4052aa7d382d314
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
@@ -19,7 +19,7 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]
@@ -64,6 +64,7 @@ requirements:
 
 test:
   requires:
+    - arby
     - cweqgen >=0.4.4
     - healpy
     - libstempo >=2.4.5  # [not arm64]

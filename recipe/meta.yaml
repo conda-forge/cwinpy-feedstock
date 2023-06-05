@@ -61,7 +61,7 @@ requirements:
     - requests
     - scipy
     - simpleeval
-    - solar-system-ephemerides >=1.0.0
+    - solar_system_ephemerides >=1.0.0
 
 test:
   requires:

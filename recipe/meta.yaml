@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "1.0.1" %}
+{% set version = "1.0.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0ba2c616324a426337119da8250c2bd553188a8da1dd01be2d5613fa6d00e177
+  sha256: 709ff021801d7746c253952c44c56ec1e3413db41d6e90cff29684d72c0d1496
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch

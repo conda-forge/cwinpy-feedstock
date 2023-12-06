@@ -21,6 +21,8 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
+  ignore_run_exports:
+    - numpy
   number: 2
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows

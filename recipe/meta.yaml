@@ -13,13 +13,17 @@ source:
     - requirements-no-lalsuite.patch
     # one test fails if no iternet connection is possible, so patch
     - nointernet.patch
+    # backport https://git.ligo.org/cwinpy/cwinpy/-/commit/bf44974065d7fd526a115f2e2a910423eb3b0765
+    - test-slow.patch
 
 build:
   entry_points:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 1
+  ignore_run_exports:
+    - numpy
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]
@@ -63,6 +67,8 @@ requirements:
     - scipy
     - simpleeval
     - solar_system_ephemerides >=1.0.0
+  run_constrained:
+    - seaborn <0.13.0  # [py<39]
 
 test:
   requires:
@@ -73,14 +79,14 @@ test:
     - lalapps
     - pip
     - pytest >=4.6
+    - pytest-astropy
     - pytest-socket
     - seaborn
-    - tempo2 <2023.5  # [not arm64]
   commands:
     # check requirements
     - python -m pip check  # [not arm64]
     # run unit tests
-    - python -m pytest --pyargs cwinpy  # [not arm64]
+    - python -m pytest --pyargs cwinpy.test -ra  # [not arm64]
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

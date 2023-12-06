@@ -80,7 +80,6 @@ test:
     - pytest-astropy
     - pytest-socket
     - seaborn
-    - tempo2 <2023.5  # [not arm64]
   commands:
     # check requirements
     - python -m pip check  # [not arm64]

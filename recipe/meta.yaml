@@ -13,8 +13,6 @@ source:
     - requirements-no-lalsuite.patch
     # one test fails if no iternet connection is possible, so patch
     - nointernet.patch
-    # backport https://git.ligo.org/cwinpy/cwinpy/-/commit/bf44974065d7fd526a115f2e2a910423eb3b0765
-    - test-slow.patch
 
 build:
   entry_points:

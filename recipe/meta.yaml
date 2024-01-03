@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "1.0.2" %}
+{% set version = "1.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 709ff021801d7746c253952c44c56ec1e3413db41d6e90cff29684d72c0d1496
+  sha256: f172f0a9a3f9e6cf217b5ac11f3d73b6eac84a75e4066e1b991e366771b899f0
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
     # one test fails if no iternet connection is possible, so patch
     - nointernet.patch
-    # backport https://git.ligo.org/cwinpy/cwinpy/-/commit/bf44974065d7fd526a115f2e2a910423eb3b0765
-    - test-slow.patch
 
 build:
   entry_points:
@@ -23,7 +21,7 @@ build:
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
   ignore_run_exports:
     - numpy
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
   skip: true  # [win]

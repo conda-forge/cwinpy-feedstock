@@ -24,7 +24,7 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows and Python < 3.9
-  skip: true  # [win,py<39]
+  skip: true  # [win or py<39]
 
 requirements:
   build:

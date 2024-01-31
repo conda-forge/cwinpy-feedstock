@@ -71,6 +71,7 @@ test:
     - arby
     - cweqgen >=0.4.4
     - healpy
+    - httpretty
     - libstempo >=2.4.5  # [not arm64]
     - lalapps
     - pip

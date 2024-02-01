@@ -54,10 +54,11 @@ requirements:
     - matplotlib-base >=3.6.0
     - numba >=0.5.0
     - {{ pin_compatible('numpy') }}
+    - numpy >=1.17.0
     - pesummary >=1.1.1
-    - psrqpy >=1.2.2
+    - psrqpy >=1.1.7
     - python
-    - python-htcondor >=9.0.6
+    - python-htcondor >=10.0.0
     - python-lal >=7.2.2
     - python-lalframe >=2.0.3
     - python-lalpulsar >=5.0.2

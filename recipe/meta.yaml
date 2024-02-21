@@ -13,6 +13,8 @@ source:
     - requirements-no-lalsuite.patch
     # one test fails if no iternet connection is possible, so patch
     - nointernet.patch
+    # fix upper limit test failure due to pesummary update
+    - upper-limit.patch
 
 build:
   entry_points:
@@ -21,7 +23,7 @@ build:
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
   ignore_run_exports:
     - numpy
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows and Python < 3.9
   skip: true  # [win or py<39]

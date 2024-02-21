@@ -1,0 +1,13 @@
+diff --git a/cwinpy/plot.py b/cwinpy/plot.py
+index 7d80cc2..a60d2d7 100644
+--- a/cwinpy/plot.py
++++ b/cwinpy/plot.py
+@@ -1284,7 +1284,7 @@ class Plot:
+             percentile=[100 * val for val in interval],
+         )
+ 
+-        return intervals
++        return intervals[0] if len(interval) == 1 else intervals
+ 
+     def upper_limit(self, parameter, bound=0.95):
+         """

@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "1.2.0" %}
+{% set version = "1.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2237eb93e2d23dbf267bb5d69b959f15967e5b8c873eaec222ea990dce68b210
+  sha256: b2f733a930b0dc02dcbbbf2a3df244078255b91984e6ade31439ba823ebf8490
   patches:
     # we handle lalsuite packages individually
     - requirements-no-lalsuite.patch
     # one test fails if no iternet connection is possible, so patch
     - nointernet.patch
-    # fix upper limit test failure due to pesummary update
-    - upper-limit.patch
 
 build:
   entry_points:
@@ -23,7 +21,7 @@ build:
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
   ignore_run_exports:
     - numpy
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows and Python < 3.9
   skip: true  # [win or py<39]

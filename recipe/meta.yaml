@@ -25,6 +25,8 @@ build:
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows and Python < 3.9
   skip: true  # [win or py<39]
+  # scipy pin prevents building on 3.12
+  skip: true  # [py>=312]
 
 requirements:
   build:
@@ -63,7 +65,7 @@ requirements:
     - python-lalframe >=2.0.3
     - python-lalpulsar >=5.0.2
     - requests
-    - scipy
+    - scipy <1.13.0a0
     - simpleeval
     - solar_system_ephemerides >=1.0.0
 

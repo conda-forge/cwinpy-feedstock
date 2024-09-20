@@ -88,7 +88,7 @@ test:
     # check requirements
     - python -m pip check  # [not arm64]
     # run unit tests
-    - python -m pytest --pyargs cwinpy.test -ra  # [not arm64]
+    - python -m pytest --pyargs cwinpy.test -ra  # [build_platform == target_platform]
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

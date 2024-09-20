@@ -13,6 +13,8 @@ source:
     - requirements-no-lalsuite.patch
     # one test fails if no iternet connection is possible, so patch
     - nointernet.patch
+    # backport https://git.ligo.org/cwinpy/cwinpy/-/merge_requests/197
+    - remove-m64-compiler-flag.patch
 
 build:
   entry_points:

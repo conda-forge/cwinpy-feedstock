@@ -21,7 +21,7 @@ build:
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
   ignore_run_exports:
     - numpy
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows and Python < 3.9
   skip: true  # [win or py<39]
@@ -44,7 +44,7 @@ requirements:
   run:
     - appdirs
     - arby
-    - astropy
+    - astropy-base
     - bilby >=2.0.1
     - configargparse
     - corner >=2.2.1
@@ -80,6 +80,7 @@ test:
     - pytest-astropy
     - pytest-socket
     - seaborn
+    - tempo2 <= 2024.04.1  # [not arm64]
   commands:
     # check requirements
     - python -m pip check  # [not arm64]

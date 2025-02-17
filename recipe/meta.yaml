@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f047c6ec0c82a57a68d232c57e7cd29e297c925a6565d1ed9536a0e4645f137d
   patches:
     # we handle lalsuite packages individually
@@ -44,7 +44,7 @@ requirements:
   run:
     - appdirs
     - arby
-    - astropy
+    - astropy-base
     - bilby >=2.0.1
     - configargparse
     - corner >=2.2.1

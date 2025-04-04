@@ -9,22 +9,40 @@ source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f047c6ec0c82a57a68d232c57e7cd29e297c925a6565d1ed9536a0e4645f137d
   patches:
-    # we handle lalsuite packages individually
-    - requirements-no-lalsuite.patch
-    # one test fails if no iternet connection is possible, so patch
-    - nointernet.patch
+    # to update the patches for a new release:
+    #
+    #     # -- checkout the new source release tag
+    #     cd /path/to/git/pycbc
+    #     git fetch
+    #     git checkout <release-tag>
+    #     # -- apply the patches on top of the release tag
+    #     git am --3way /path/to/git/pycbc-feedstock/recipe/patches/*.patch
+    #     <resolve-any-conflicts>
+    #     # -- render new patch files
+    #     git format-patch <release-tag>
+    #     # -- copy them back to the feedstock
+    #     cd /path/to/git/pycbc-feedstock
+    #     git rm recipe/patches/*.patch
+    #     cp /path/to/git/pycbc/*.patch recipe/patches/
+    #     git add recipe/patches/*.patch
+    #     <update-this-file-as-required>
+
+    # remove lalsuite requirement
+    - patches/0001-Remove-lalsuite-Python-requirement.patch
+    # patch test to survive no internet connection
+    - patches/0002-Handle-no-internet-connection-in-test.patch
+    # remove extra compiler flags for conda builds
+    - patches/0003-Patch-compiler-flags-for-conda.patch
 
 build:
   entry_points:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  ignore_run_exports:
-    - numpy
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
-  # requirements aren't available for Windows and Python < 3.9
-  skip: true  # [win or py<39]
+  # requirements aren't available for Windows
+  skip: true  # [win]
 
 requirements:
   build:
@@ -32,15 +50,15 @@ requirements:
     - {{ stdlib("c") }}
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
+    - cython >=3                             # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
   host:
-    - cython
+    - cython >=3
     - numpy
     - pip
     - python
-    - setuptools
-    - setuptools_scm
+    - setuptools >=61
+    - setuptools_scm >=6.2
   run:
     - appdirs
     - arby
@@ -55,7 +73,7 @@ requirements:
     - matplotlib-base >=3.6.0
     - numba >=0.5.0
     - numpy >=1.17.0
-    - pesummary >=1.1.1
+    - pesummary >=1.2.0
     - psrqpy >=1.1.7
     - python
     - python-htcondor >=10.0.0
@@ -73,7 +91,7 @@ test:
     - cweqgen >=0.4.4
     - healpy
     - httpretty
-    - libstempo >=2.4.5  # [not arm64]
+    - libstempo >=2.4.2  # [not arm64]
     - lalapps
     - pip
     - pytest >=4.6

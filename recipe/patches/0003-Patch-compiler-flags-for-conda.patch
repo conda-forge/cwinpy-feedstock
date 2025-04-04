@@ -1,0 +1,59 @@
+From 654edf97cf77dc9a1cf0cfb7c981e5478c473622 Mon Sep 17 00:00:00 2001
+From: Duncan Macleod <macleoddm@cardiff.ac.uk>
+Date: Fri, 4 Apr 2025 11:56:19 +0100
+Subject: [PATCH 3/3] Patch compiler flags for conda
+
+---
+ setup.py | 26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 9d29fed..224c72e 100644
+--- a/setup.py
++++ b/setup.py
+@@ -5,9 +5,26 @@ A Python module for Bayesian inferences with continuous gravitational wave
+ sources.
+ """
+ 
++import os
++
+ import numpy as np
+ from setuptools import Extension, setup
+ 
++CONDA = os.environ.get("CONDA_BUILD", 0)
++
++# compiler arguments
++extra_compile_args = [
++    "-Wall",
++]
++if not CONDA:
++    extra_compile_args += [
++        "-O3",
++        "-Wextra",
++        "-ffast-math",
++        "-fno-finite-math-only",
++        "-funroll-loops",
++    ]
++
+ ext_modules = [
+     Extension(
+         "cwinpy.heterodyne.fastheterodyne",
+@@ -19,14 +36,7 @@ ext_modules = [
+             "cwinpy/heterodyne",
+         ],
+         libraries=["m"],
+-        extra_compile_args=[
+-            "-Wall",
+-            "-O3",
+-            "-Wextra",
+-            "-ffast-math",
+-            "-fno-finite-math-only",
+-            "-funroll-loops",
+-        ],
++        extra_compile_args=extra_compile_args,
+     )
+ ]
+ 
+-- 
+2.39.5
+

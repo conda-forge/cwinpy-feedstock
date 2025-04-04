@@ -1,7 +1,7 @@
 From 691746d2efbd22c2c4b4e2afce30f4aa09e8dae3 Mon Sep 17 00:00:00 2001
 From: Duncan Macleod <macleoddm@cardiff.ac.uk>
 Date: Fri, 4 Apr 2025 11:58:03 +0100
-Subject: [PATCH 2/3] Handle no internet connection in test
+Subject: [PATCH 2/2] Handle no internet connection in test
 
 ---
  cwinpy/test/test_heterodyne.py | 7 ++++---

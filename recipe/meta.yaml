@@ -86,7 +86,11 @@ requirements:
 test:
   requires:
     - {{ compiler("c") }}
+    - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
+    - astropy-base >=4.1
+    - ephem >=3.7.7.1
+    - pyerfa
     - arby
     - cweqgen >=0.4.4
     - cython >=3

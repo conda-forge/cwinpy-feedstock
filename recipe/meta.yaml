@@ -87,6 +87,7 @@ test:
   requires:
     - arby
     - cweqgen >=0.4.4
+    - git
     - healpy
     - httpretty
     #- libstempo >=2.4.2  # [not arm64]

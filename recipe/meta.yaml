@@ -104,7 +104,7 @@ test:
     - python -m pip check  # [not arm64]
     # run unit tests
     #- python -m pytest --pyargs cwinpy.test -ra  # [build_platform == target_platform]
-    - python -m pytest cwinpy/test/test_signal.py
+    - python -m pytest -s cwinpy/test/test_signal.py
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

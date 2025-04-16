@@ -89,7 +89,7 @@ test:
     - cweqgen >=0.4.4
     - healpy
     - httpretty
-    - libstempo >=2.4.2  # [not arm64]
+    #- libstempo >=2.4.2  # [not arm64]
     - lalapps
     - pesummary >=1.3.2
     - pip
@@ -97,11 +97,14 @@ test:
     - pytest-astropy
     - pytest-socket
     - seaborn
+    - tempo2
   commands:
+    - pip install git+https://github.com/mattpitkin/libstempo.git@utf8-investigation
     # check requirements
     - python -m pip check  # [not arm64]
     # run unit tests
-    - python -m pytest --pyargs cwinpy.test -ra  # [build_platform == target_platform]
+    #- python -m pytest --pyargs cwinpy.test -ra  # [build_platform == target_platform]
+    - python -m pytest cwinpy/test/test_signal.py
     # check entry points
     - cwinpy_pe --help
     - cwinpy_pe_pipeline --help

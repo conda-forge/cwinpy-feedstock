@@ -85,8 +85,11 @@ requirements:
 
 test:
   requires:
+    - {{ compiler("c") }}
+    - {{ stdlib("c") }}
     - arby
     - cweqgen >=0.4.4
+    - cython >=3
     - git
     - healpy
     - httpretty

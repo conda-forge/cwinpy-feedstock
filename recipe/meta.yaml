@@ -108,7 +108,7 @@ test:
     - pytest-astropy
     - pytest-socket
     - seaborn
-    #- tempo2  # just let libstempo install tempo2
+    - tempo2 =2012.07.1
   commands:
     - pip install git+https://github.com/mattpitkin/libstempo.git@utf8-investigation
     - conda install -c conda-forge tempo2"=2025.02.1"

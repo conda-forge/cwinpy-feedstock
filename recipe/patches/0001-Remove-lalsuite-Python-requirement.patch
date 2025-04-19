@@ -16,7 +16,7 @@ index a766cd3..8541964 100644
      "gwpy >= 2.1.1",
      "healpy",
      "htcondor >= 10.0.0",
--    "lalsuite >= 7.8",
+-    "lalsuite >= 7.23",
      "lintegrate >= 0.1.7",
      "matplotlib >= 3.6.0",
      "numba >= 0.5.0",

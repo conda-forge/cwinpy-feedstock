@@ -108,7 +108,7 @@ test:
     - pytest-astropy
     - pytest-socket
     - seaborn
-    - tempo =2025.02.1  # [not arm64]
+    - tempo2 =2025.02.1  # [not arm64]
   commands:
     - pip install git+https://github.com/mattpitkin/libstempo.git@update_structures  # [not arm64]
     # check requirements

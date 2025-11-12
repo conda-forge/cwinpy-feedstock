@@ -1,5 +1,5 @@
 {% set name = "cwinpy" %}
-{% set version = "1.4.0" %}
+{% set version = "1.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f047c6ec0c82a57a68d232c57e7cd29e297c925a6565d1ed9536a0e4645f137d
+  sha256: d5a48f6764dfe2de51d74199ab12c9515c7188a67e386e331d49271dc24c54e8
   patches:
     # to update the patches for a new release:
     #
@@ -37,10 +37,10 @@ build:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 3
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows
-  skip: true  # [win]
+  skip: true  # [win, py == 313]
 
 requirements:
   build:
@@ -85,6 +85,17 @@ requirements:
 
 test:
   requires:
+    - {{ compiler("c") }}
+    - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
+    - python  # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+    - numpy  # [build_platform != target_platform]
+    - astropy-base >=4.1
+    - ephem >=3.7.7.1
+    - pyerfa
+    - cython >=3
+    - git
     - arby
     - cweqgen >=0.4.4
     - healpy
@@ -97,6 +108,7 @@ test:
     - pytest-astropy
     - pytest-socket
     - seaborn
+    - tempo2 =2025.02.1  # [not arm64]
   commands:
     # check requirements
     - python -m pip check  # [not arm64]

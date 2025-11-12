@@ -46,7 +46,7 @@ requirements:
   build:
     - {{ compiler("c") }}
     - {{ stdlib("c") }}
-    - python                                 # [build_platform != target_platform]
+    - python <=3.12                          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - cython >=3                             # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
@@ -54,7 +54,7 @@ requirements:
     - cython >=3
     - numpy
     - pip
-    - python
+    - python <=3.12
     - setuptools >=61
     - setuptools_scm >=6.2
   run:
@@ -73,7 +73,7 @@ requirements:
     - numpy >=1.17.0
     - pesummary >=1.2.0
     - psrqpy >=1.1.7
-    - python
+    - python <=3.12
     - python-htcondor >=10.0.0
     - python-lal >=7.2.2
     - python-lalframe >=2.0.3

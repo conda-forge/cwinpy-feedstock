@@ -40,7 +40,7 @@ build:
   number: 1
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows, aarch64 or python>3.12
-  skip: true  # [win or aarch64 or py>=313]
+  skip: true  # [win or aarch64 or ppc64le or py>=313]
 
 requirements:
   build:

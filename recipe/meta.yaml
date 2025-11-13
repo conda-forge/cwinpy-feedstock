@@ -39,8 +39,8 @@ build:
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  # requirements aren't available for Windows
-  skip: true  # [win or aarch64 or ppc64le or py>=3.13]
+  # requirements aren't available for Windows, aarch64 or python>3.12
+  skip: true  # [win or aarch64 or ppc64le or py>=313]
 
 requirements:
   build:

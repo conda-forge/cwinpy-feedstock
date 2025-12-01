@@ -31,13 +31,15 @@ source:
     - patches/0001-Remove-lalsuite-Python-requirement.patch
     # patch test to survive no internet connection
     - patches/0002-Handle-no-internet-connection-in-test.patch
+    # patch tests that require libstempo
+    - patches/0003-Add-pytest.mark.xfail-to-tempo2-tests.patch
 
 build:
   entry_points:
     - cwinpy_pe = cwinpy.pe.pe:pe_cli
     - cwinpy_pe_pipeline = cwinpy.pe.pe:pe_pipeline_cli
     - cwinpy_pe_generate_pp_plots = cwinpy.pe.testing:generate_pp_plots
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   # requirements aren't available for Windows, aarch64 or python>3.12
   skip: true  # [win or aarch64 or ppc64le or py>=313]
